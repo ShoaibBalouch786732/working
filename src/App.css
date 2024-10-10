@@ -1,0 +1,93 @@
+/* Top bar styles */
+.top-bar {
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+}
+
+.top-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.social-links a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+.social-links a:hover {
+  color: #007bff;
+}
+
+/* Bottom bar styles */
+.bottom-bar {
+  background-color: #343a40;
+  padding: 15px 0;
+}
+
+.bottom-bar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f0f0f0;
+}
+
+.Navbar {
+  position: fixed; /* Fix the navbar to the top */
+  width: 100%; /* Full width */
+  z-index: 10; /* Ensure it's above other components */
+}
+
+/* Sidebar styles */
+.Sidebar {
+  position: fixed; /* Fix the sidebar */
+  width: 200px; /* Width of the sidebar */
+  top: 100px; /* Start below the navbar */
+  height:100%; /* Full height below the navbar */
+  overflow-y: auto; /* Allow scrolling */
+  z-index: 1; /* Below the Chatbot */
+}
+
+/* Chatbot styles */
+.chatbot {
+  flex-grow: 1;                /* Takes up remaining space next to the sidebar */
+  display: flex;               /* If the Chatbot has internal flexbox items */
+  flex-direction: column;      /* Ensures the Chatbot content stacks vertically */
+}
+.contact {
+  width: 300px;                
+  background-color:  #1d2124;
+ 
+}
+.MainContainer {
+  display: flex;                /* Enables flexbox layout */
+  height: 100%;               /* Makes the container full height of the viewport */
+}
