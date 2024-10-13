@@ -10,8 +10,9 @@ import {
   ListItem,
   ListItemText,
   Popover,
+  Button,
 } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
+//import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
@@ -63,7 +64,7 @@ const Chatbot = () => {
   };
 
   return (
-    <Box className="Chatbot" sx={{ display: 'flex', flexDirection: 'column', height: '800px', width: '611px', margin: 'none', borderLeft: '1px solid #ccc', }}>
+    <Box className="Chatbot" sx={{ display: 'flex', flexDirection: 'column', height: '1025px', width: '611px', margin: 'none', borderLeft: '1px solid #ccc',borderRight: '1px solid #accc', }}>
       <AppBar position="static" sx={{ backgroundColor: '#ffff', boxShadow: 'none' }}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
           <Typography sx={{ textAlign: 'center', color: '#ABABAB' }}>Today 12:34 PM</Typography>
@@ -71,56 +72,83 @@ const Chatbot = () => {
       </AppBar>
 
       <Box sx={{ flexGrow: 1, overflowY: 'auto', padding: 2 }}>
-        <List>
-          {messages.map((msg, index) => (
-            <ListItem
-              key={index}
-              sx={{
-
-                justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start',
-                paddingBottom: '15px',
-                backgroundColor: msg.reply === true ? 'transparent' : '#E9EFF4',
-              }}
-            >
+  <List>
+    {messages.map((msg, index) => (
+      <ListItem
+        key={index}
+        sx={{
+          justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start',
+          paddingBottom: '15px',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: msg.sender === 'user' ? 'flex-end' : 'flex-start',
+          }}
+        >
+          <ListItemText
+            primary={
               <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: msg.sender === 'user' ? 'flex-end' : 'flex-start',
-                }}
+              sx={{
+                background: msg.sender === 'user'
+                  ? 'linear-gradient(180deg, #D92CC1 0%, #4D72F8 100%)' 
+                  : '#E9EFF4', 
+                borderRadius: msg.sender === 'user'
+                  ? '50px 50px 20px 50px' 
+                  : '20px', 
+                padding: '10px',
+                fontsize:"15px",
+                Width: msg.sender === 'user' ? '250px' : '369px', 
+                minWidth: '149px',
+                // height: '70px',
+                // overflow:"hidden",
+                wordWrap: 'break-word',
+                color: msg.sender === 'user' ? '#ffff' : 'black', 
+                fonstsize:"13px",
+              }}
               >
-                <ListItemText
-                  primary={
-                    <Box
-                      sx={{
-                        bgcolor: msg.sender === 'user' ? (msg.reply ? '#E9EFF4' : '#D92CC1') : '#fff',
-                        borderRadius: '20px',
-                        padding: '8px',
-                        Width: '100px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        color: msg.sender === 'user' && msg.reply ? 'black' : 'inherit',
-                      }}
-                    >
-                      <Typography>{msg.text}</Typography>
-                      <Typography variant="caption" color="textSecondary" sx={{ marginTop: '2px', display: 'flex', justifyContent: 'flex-end', }}>
-                        {msg.timestamp}
-                      </Typography>
-                    </Box>
-                  }
-                />
-                {msg.sender === 'user' && msg.seen && (
-                  <DoneAllIcon sx={{ fontSize: '12px', color: '#4fc3f7', marginTop: '2px' }} />
-                )}
+                <Typography sx={{
+                        color: msg.sender === 'user' ? '#ffff' : 'black',
+                        fontFamily: 'Arial', 
+                        fontSize: '18px',    
+                        fontWeight: 400,     
+                       
+                      }}>
+                  {msg.text}
+                </Typography>
+                <Typography
+                  variant="caption"
+                  color="textSecondary"
+                  sx={{
+                    marginTop: '2px',
+                    display: 'block',
+                    textAlign: 'right', 
+                    color: msg.sender === 'user' ? '#FFFFFF' : 'black',
+                    fontsize:"8px",
+ 
+                  }}
+                >
+                  {msg.timestamp}
+                </Typography>
               </Box>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
+            }
+          />
+          {msg.sender === 'user' && msg.seen && (
+            <DoneAllIcon sx={{ fontSize: '12px', color: '#4fc3f7', marginTop: '2px' }} />
+          )}
+        </Box>
+      </ListItem>
+    ))}
+  </List>
+</Box>
 
 
 
-      <Box sx={{ padding: 2, display: 'flex', alignItems: 'center' }}>
+
+
+      <Box sx={{ padding: 2, display: 'flex', alignItems: 'center' , border:"1px solid #ccc" }}>
         <IconButton color="primary" onClick={() => alert('File Manager feature not implemented yet')}>
           <AttachFileIcon />
         </IconButton>
@@ -131,12 +159,13 @@ const Chatbot = () => {
         <TextField
           variant="outlined"
           fullWidth
-          placeholder="Type a message..."
+          placeholder="Type a message"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSend()}
           sx={{
             bgcolor: '#F0F2F5',
+            
             borderRadius: '20px',
             '& .MuiOutlinedInput-notchedOutline': {
               border: 'none',
@@ -164,9 +193,19 @@ const Chatbot = () => {
         <IconButton color="primary">
           <MicIcon />
         </IconButton>
-        <IconButton color="primary" onClick={handleSend}>
-          <SendIcon />
-        </IconButton>
+        <Button
+  onClick={handleSend}
+  sx={{
+    backgroundColor: 'transparent'
+   
+  }}
+>
+  <Box
+    component="img"
+    src="/images/Group 13.png"
+    sx={{ width: 40, height: 40 }} 
+  />
+</Button>
       </Box>
     </Box>
   );

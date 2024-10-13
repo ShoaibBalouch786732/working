@@ -1,43 +1,31 @@
 import React, { useState } from 'react';
 import { Box, Button, InputBase, Divider } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { Card, CardContent, Typography, Avatar, Badge } from '@mui/material';
-
-
+import {  FormControl, InputLabel, Select, MenuItem, IconButton } from '@mui/material';
+//import {  Menu, MenuItem, IconButton } from '@mui/material';
+//import ArrowImage from '../images/Arrow.png';
+//import './styles.css'; 
 const Sidebar = () => {
 
 
+  
+  
+  const cardData = [
+    { name: "Zunaira Butt", avatar: "ZB", time: "11:00 AM", message: "Incoming", type: "call" },
+    { name: "Asad Najam", avatar: "AN", time: "11:00 AM", message: "Are You available for meeting?", type: "message", badge: 3 },
+    { name: "Kamran Masood", avatar: "KM", time: "11:00 AM", message: "Outcoming", type: "call" },
+    { name: "Kim Williamson", avatar: "KW", time: "11:00 AM", message: "Missed", type: "call" },
+    { name: "Hezelwood", avatar: "H", time: "11:00 AM", message: "Are You available for meeting?", type: "message", badge: 3 },
+    { name: "Brown", avatar: "B", time: "11:00 AM", message: "Are You available for meeting?", type: "message", badge: 3 },
+  ];
   const [selectedNumber, setSelectedNumber] = useState('');
 
-  const handleSelect = (eventKey) => {
-    setSelectedNumber(eventKey);
+  const handleChange = (event) => {
+    setSelectedNumber(event.target.value);
   };
-  // Chat list array
-  // const chatList = [
-  //   {
-  //     name: "John Doe",
-  //     message: "Hey! I wanted to discuss the project with you.",
-  //     time: "10:30 AM",
-  //     avatar: "JD",
-  //     badge: 2,
-  //   },
-  //   {
-  //     name: "Jane Smith",
-  //     message: "Sure, let's schedule a meeting. FGHFH ",
-  //     avatar: "JM",
-  //     time: "11:00 AM", 
-  //     badge: 3,
-  //   },
-  //   {
-  //     name: "Jane Smith",
-  //     message: "Sure, let's schedule a meeting. FGHFH ",
-  //     avatar: "JM",
-  //     time: "11:00 AM", 
-  //     badge: 3,
-  //   },
-  // Add more chat objects here
-  //];
+
+
 
   return (
 
@@ -45,36 +33,45 @@ const Sidebar = () => {
     <Box
       sx={{
         width: "424px",
-        height: '100%',
+        height: '1024px',
         backgroundColor: '#f0f0f0',
         padding: 2,
         boxShadow: 1,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between'
+       
       }}
     >
 
-
-
-      <DropdownButton
-        id="dropdown-basic-button "
-        title={`All Numbers      ${selectedNumber}`}
-        variant="primary"
-        className="py-4"
-        style={{ borderRadius: '30px', width: '50px' }}
-      >
-
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => (
-          <Dropdown.Item
-            key={number}
-            eventKey={number}
-            onSelect={handleSelect}
-          >
-            {number}
-          </Dropdown.Item>
-        ))}
-      </DropdownButton>
+<Box sx={{ width: '168px', height:"35px",py:"10px",mb: 7, mt: 2  }}>
+      <FormControl fullWidth>
+        <InputLabel id="dropdown-label" sx={{            color: '#fff',
+}}>All Number</InputLabel>
+        <Select
+          labelId="dropdown-label"
+          id="dropdown"
+          value={selectedNumber}
+          onChange={handleChange}
+          IconComponent={() => (
+            <IconButton>
+<img src="/images/Arrow.png" alt="Dropdown Icon" style={{ width: '24px', height: '24px' }} />
+</IconButton>
+          )}
+          sx={{
+            background: 'linear-gradient(180deg, #D92CC1 0%, #4D72F8 100%)',
+            color: '#fff',
+            borderRadius: '30px',
+          }}
+        >
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => (
+            <MenuItem key={number} value={number}>
+              {number}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box> 
+            
 
       <Box
         sx={{
@@ -98,9 +95,11 @@ const Sidebar = () => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2, py: 3 }}>
 
         <Button
-          variant="contained"
-          color="secondary"
-          sx={{ flexBasis: '25%', mr: 1, borderRadius: '20px' }}
+          
+          sx={{ flexBasis: '25%', mr: 1, borderRadius: '20px',            background: 'linear-gradient(180deg, #D92CC1 0%, #4D72F8 100%)',
+            color: '#fff',
+
+          }}
         >
           All
         </Button>
@@ -110,10 +109,13 @@ const Sidebar = () => {
           variant="outlined"
           sx={{
             flexBasis: '35%',
+           
+            border: '1px solid  #4F70F6', 
+           
             borderRadius: '20px',
-            borderColor: 'primary.main',
             ml: 1,
             mr: 1,
+            color:"#8B8B8B",
           }}
         >
           Scheduled
@@ -124,8 +126,12 @@ const Sidebar = () => {
           variant="outlined"
           sx={{
             flexBasis: '35%',
+            border: '1px solid #C535C8', 
+           
+            color:"#8B8B8B",
+
             borderRadius: '20px',
-            borderColor: 'primary.main',
+           
             ml: 1,
           }}
         >
@@ -134,443 +140,42 @@ const Sidebar = () => {
       </Box>
       <Divider />
 
+     
+      <div>
+      {cardData.map((item, index) => (
+        <Box className="box-container" key={index}>
+          <Card className="card-container">
+            <Avatar className="avatar-style" alt={item.name}>
+              {item.avatar}
+            </Avatar>
+            <CardContent className="card-content-style">
+              <Box className="card-content-header">
+                <Typography variant="subtitle2" component="div" className="card-content-title" sx={{fontWeight:"bold",}}>
+                  {item.name}
+                </Typography>
+                <Typography variant="caption" className="card-content-time">
+                  {item.time}
+                </Typography>
+              </Box>
+              <Box className="card-content-body">
+                <Typography variant="body2" color="text.secondary" className="card-body-text">
+                  {item.type === "call" ? (
+                    <img src="/images/phone-call.png" alt="Call Type" className="card-body-icon" />
+                  ) : null}
+                  {item.message}
+                </Typography>
+                {item.type === "message" && item.badge ? (
+                  <Badge badgeContent={item.badge} className="badge-style" classes={{ badge: 'badge-badge' }} />
+                ) : (
+                  <img src="/images/call.png" alt="Call Icon" className="call-icon" />
+                )}
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+      ))}
+    </div>
 
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexGrow: 1,
-          py: "6px",
-        }}
-      >
-        <Card
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: 2,
-            Width: '352px',
-            height: '70px',
-            borderRadius: '10px',
-          }}
-        >
-
-          <Avatar
-            sx={{
-              width: 40, height: 40, mr: 2, bgcolor: '#D92CC1',
-              color: 'white',
-              fontWeight: 'bold'
-            }}
-            alt="Jane Smith"
-          >
-            JM
-          </Avatar>
-
-
-          <CardContent sx={{ flexGrow: 1, padding: 0 }}>
-
-            <Box sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              pt: 4
-            }}>
-              <Typography variant="subtitle2" component="div" sx={{ fontWeight: 'bold' }}>
-                Jane Smith
-              </Typography>
-              <Typography variant="caption" sx={{ color: 'gray' }}>
-                11:00 AM
-              </Typography>
-            </Box>
-
-
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="body2" color="text.secondary">
-                Sure, let's schedule a meeting. FGHFH
-              </Typography>
-              <Badge
-                badgeContent={3}
-                color="primary"
-                sx={{ marginLeft: 2, width: '20px', heigth: "20px" }}
-              />
-            </Box>
-          </CardContent>
-        </Card>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexGrow: 1,
-          py: "6px",
-        }}
-      >
-        <Card
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: 2,
-            Width: '352px',
-            height: '70px',
-            borderRadius: '10px',
-          }}
-        >
-          {/* Left Side Avatar */}
-          <Avatar
-            sx={{
-              width: 40, height: 40, mr: 2, bgcolor: '#D92CC1', // Set background color
-              color: 'white', // Set text color to white
-              fontWeight: 'bold'
-            }} // Avatar with margin to the right
-            alt="Jane Smith"
-          >
-            JM
-          </Avatar>
-
-          {/* Right Side Content */}
-          <CardContent sx={{ flexGrow: 1, padding: 0 }}> {/* Remove padding for tight fit */}
-            {/* Name and Time */}
-            <Box sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              pt: 4 // Adds padding at the top
-            }}>
-              <Typography variant="subtitle2" component="div" sx={{ fontWeight: 'bold' }}>
-                Jane Smith
-              </Typography>
-              <Typography variant="caption" sx={{ color: 'gray' }}>
-                11:00 AM
-              </Typography>
-            </Box>
-
-            {/* Message and Badge */}
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="body2" color="text.secondary">
-                Sure, let's schedule a meeting. FGHFH
-              </Typography>
-              <Badge
-                badgeContent={3}
-                color="primary"
-                sx={{ marginLeft: 2, width: '20px', heigth: "20px" }}
-              />
-            </Box>
-          </CardContent>
-        </Card>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexGrow: 1,
-          py: "6px",
-        }}
-      >
-        <Card
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: 2,
-            Width: '352px',
-            height: '70px',
-            borderRadius: '10px',
-          }}
-        >
-
-          <Avatar
-            sx={{
-              width: 40, height: 40, mr: 2, bgcolor: '#D92CC1',
-              color: 'white',
-              fontWeight: 'bold'
-            }}
-            alt="Jane Smith"
-          >
-            JM
-          </Avatar>
-
-
-          <CardContent sx={{ flexGrow: 1, padding: 0 }}>
-
-            <Box sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              pt: 4
-            }}>
-              <Typography variant="subtitle2" component="div" sx={{ fontWeight: 'bold' }}>
-                Jane Smith
-              </Typography>
-              <Typography variant="caption" sx={{ color: 'gray' }}>
-                11:00 AM
-              </Typography>
-            </Box>
-
-
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="body2" color="text.secondary">
-                Sure, let's schedule a meeting. FGHFH
-              </Typography>
-              <Badge
-                badgeContent={3}
-                color="primary"
-                sx={{ marginLeft: 2, width: '20px', heigth: "20px" }}
-              />
-            </Box>
-          </CardContent>
-        </Card>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexGrow: 1,
-          py: "6px",
-        }}
-      >
-        <Card
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: 2,
-            Width: '352px',
-            height: '70px',
-            borderRadius: '10px',
-          }}
-        >
-
-          <Avatar
-            sx={{
-              width: 40, height: 40, mr: 2, bgcolor: '#D92CC1',
-              color: 'white',
-              fontWeight: 'bold'
-            }}
-            alt="Jane Smith"
-          >
-            JM
-          </Avatar>
-
-
-          <CardContent sx={{ flexGrow: 1, padding: 0 }}>
-
-            <Box sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              pt: 4
-            }}>
-              <Typography variant="subtitle2" component="div" sx={{ fontWeight: 'bold' }}>
-                Jane Smith
-              </Typography>
-              <Typography variant="caption" sx={{ color: 'gray' }}>
-                11:00 AM
-              </Typography>
-            </Box>
-
-
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="body2" color="text.secondary">
-                Sure, let's schedule a meeting. FGHFH
-              </Typography>
-              <Badge
-                badgeContent={3}
-                color="primary"
-                sx={{ marginLeft: 2, width: '20px', heigth: "20px" }}
-              />
-            </Box>
-          </CardContent>
-        </Card>
-      </Box>
-
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexGrow: 1,
-          py: "6px",
-        }}
-      >
-        <Card
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: 2,
-            Width: '352px',
-            height: '70px',
-            borderRadius: '10px',
-          }}
-        >
-
-          <Avatar
-            sx={{
-              width: 40, height: 40, mr: 2, bgcolor: '#D92CC1',
-              color: 'white',
-              fontWeight: 'bold'
-            }}
-            alt="Jane Smith"
-          >
-            JM
-          </Avatar>
-
-
-          <CardContent sx={{ flexGrow: 1, padding: 0 }}>
-
-            <Box sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              pt: 4
-            }}>
-              <Typography variant="subtitle2" component="div" sx={{ fontWeight: 'bold' }}>
-                Jane Smith
-              </Typography>
-              <Typography variant="caption" sx={{ color: 'gray' }}>
-                11:00 AM
-              </Typography>
-            </Box>
-
-
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="body2" color="text.secondary">
-                Sure, let's schedule a meeting. FGHFH
-              </Typography>
-              <Badge
-                badgeContent={3}
-                color="primary"
-                sx={{ marginLeft: 2, width: '20px', heigth: "20px" }}
-              />
-            </Box>
-          </CardContent>
-        </Card>
-      </Box>
-
-
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexGrow: 1,
-        }}
-      >
-        <Card
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: 2,
-            Width: '352px',
-            height: '70px',
-            borderRadius: '10px',
-          }}
-        >
-
-          <Avatar
-            sx={{
-              width: 40, height: 40, mr: 2, bgcolor: '#D92CC1',
-              color: 'white',
-              fontWeight: 'bold'
-            }}
-            alt="Jane Smith"
-          >
-            JM
-          </Avatar>
-
-
-          <CardContent sx={{ flexGrow: 1, padding: 0 }}>
-
-            <Box sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              pt: 4
-            }}>
-              <Typography variant="subtitle2" component="div" sx={{ fontWeight: 'bold' }}>
-                Jane Smith
-              </Typography>
-              <Typography variant="caption" sx={{ color: 'gray' }}>
-                11:00 AM
-              </Typography>
-            </Box>
-
-
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="body2" color="text.secondary">
-                Sure, let's schedule a meeting. FGHFH
-              </Typography>
-              <Badge
-                badgeContent={3}
-                color="primary"
-                sx={{ marginLeft: 2, width: '20px', heigth: "20px" }}
-              />
-            </Box>
-          </CardContent>
-        </Card>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexGrow: 1,
-          py: "6px",
-        }}
-      >
-        <Card
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: 2,
-            Width: '352px',
-            height: '70px',
-            borderRadius: '10px',
-          }}
-        >
-
-          <Avatar
-            sx={{
-              width: 40, height: 40, mr: 2, bgcolor: '#D92CC1',
-              color: 'white',
-              fontWeight: 'bold'
-            }}
-            alt="Jane Smith"
-          >
-            JM
-          </Avatar>
-
-
-          <CardContent sx={{ flexGrow: 1, padding: 0 }}>
-
-            <Box sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              pt: 4
-            }}>
-              <Typography variant="subtitle2" component="div" sx={{ fontWeight: 'bold' }}>
-                Jane Smith
-              </Typography>
-              <Typography variant="caption" sx={{ color: 'gray' }}>
-                11:00 AM
-              </Typography>
-            </Box>
-
-
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Typography variant="body2" color="text.secondary">
-                Sure, let's schedule a meeting. FGHFH
-              </Typography>
-              <Badge
-                badgeContent={3}
-                color="primary"
-                sx={{ marginLeft: 2, width: '20px', heigth: "20px" }}
-              />
-            </Box>
-          </CardContent>
-        </Card>
-      </Box>
     </Box>
   );
 };

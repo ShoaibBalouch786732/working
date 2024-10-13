@@ -44,14 +44,14 @@ const Navbar = () => {
         >
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Avatar
-              src="public/images/Group 13.png"
+              src="/images/image 1.png"
 
               sx={{ width: 55, height: 55, marginRight: 2 }}
             />
             <Box>
               <Typography variant="body2" color="text.secondary">
                 <span className='color-black' style={{ display: 'block', fontWeight: 'bold' }}>Mishal Irfan</span>
-                <span style={{ display: 'block' }}>last seen at 5:56 Pm</span>
+                <span style={{ display: 'block',color: '#ABABAB' }}>last seen at 5:56 Pm</span>
               </Typography>
             </Box>
           </Box>

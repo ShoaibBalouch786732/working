@@ -4,7 +4,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'; // Dropdown Icon
+
 
 const Contact = () => {
 
@@ -29,14 +29,14 @@ const Contact = () => {
         width: "300px",
         height: '100%',
         backgroundColor: '#ffff',
-        padding: 2,
+        // padding: 2,
         display: 'flex',
         flexDirection: 'column',
         borderLeft: '1px solid #ccc',
       }}
     >
 
-      <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, padding: 2,}}>
         <IconButton color="primary">
           <ContactsIcon />
         </IconButton>
@@ -44,31 +44,31 @@ const Contact = () => {
           Contacts
         </Typography>
         <IconButton color="primary">
-          <AddIcon /> {/* Add Icon */}
+          <AddIcon /> 
         </IconButton>
       </Box>
 
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          backgroundColor: '#ffff',
-          padding: '0.5rem',
-          borderRadius: '50px',
-          border: '1px solid #ccc',
+      <div style={{ padding: '10px' }}>
+  <Box
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: '#ffff',
+      padding: '0.5rem',
+      borderRadius: '50px',
+      border: '1px solid #ccc',
+     
+    }}
+  >
+    <SearchIcon />
+    <InputBase
+      placeholder="Search chat"
+      sx={{ ml: 1, flex: 1 }}
+    />
+  </Box>
+</div>
 
-
-        }}
-      >
-        <SearchIcon />
-        <InputBase
-          placeholder="Search chat"
-          sx={{ ml: 1, flex: 1 }}
-        />
-      </Box>
-
-
-      <Box sx={{ display: 'flex', flexDirection: 'row', flexGrow: 1 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', flexGrow: 1,  padding: 2, }}>
 
         <Box sx={{ flexGrow: 1, padding: '6px' }}>
           {contacts.reduce((acc, contact, index) => {
@@ -82,7 +82,7 @@ const Contact = () => {
             return acc;
           }, []).map((letter, letterIndex) => (
             <Box key={letterIndex} sx={{ marginBottom: 2 }}>
-              <Typography variant="body1" sx={{ padding: '8px 8px 8px 16px', fontWeight: 'bold' }}>
+              <Typography variant="body1" sx={{ padding: '8px 8px 8px 16px', color: '#ABABAB'}}>
                 {letter}
               </Typography>
               {contacts.filter(contact => contact.name.charAt(0).toUpperCase() === letter).map((contact, contactIndex) => (
@@ -142,19 +142,25 @@ const Contact = () => {
           height: '70px',
           width: '100%',
           padding: '0px',
+          paddingLeft: '20px',
+          fontWeight: 'bold',
 
         }}
         endIcon={
           <Box
-            sx={{
-              backgroundColor: 'white',
-              color: 'brown',
-              borderRadius: '50%',
-              padding: '5px',
-            }}
-          >
-            <ArrowDropDownIcon />
-          </Box>
+          sx={{
+            backgroundColor: 'white',
+            color: 'brown',
+            borderRadius: '50%',
+            padding: '5px',
+          }}
+        >
+          <img
+            src="/images/vector.png"
+            alt="Dropdown"
+            style={{ width: '20px', height: '20px' }} // Adjust size as needed
+          />
+        </Box>
         }
       >
         Recent
@@ -175,18 +181,24 @@ const Contact = () => {
           height: '70px',
           width: '100%',
           padding: '0px',
+          paddingLeft: '20px',
+          fontWeight: 'bold',
         }}
         endIcon={
           <Box
-            sx={{
-              backgroundColor: 'white',
-              color: 'brown',
-              borderRadius: '50%',
-              padding: '5px',
-            }}
-          >
-            <ArrowDropDownIcon />
-          </Box>
+          sx={{
+            backgroundColor: 'white',
+            color: 'brown',
+            borderRadius: '50%',
+            padding: '5px',
+          }}
+        >
+          <img
+            src="/images/vector.png"
+            alt="Dropdown"
+            style={{ width: '20px', height: '20px' }} 
+          />
+        </Box>
         }
       >
         Favourites
